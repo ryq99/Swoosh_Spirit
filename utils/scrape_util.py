@@ -8,7 +8,6 @@ from urllib.request import urlretrieve
 
 class snkrs_img_scraper():
     '''
-
     '''
     def __init__(self, url='https://www.pinterest.com'):
         self.browser = webdriver.Chrome(executable_path='chromedriver.exe')

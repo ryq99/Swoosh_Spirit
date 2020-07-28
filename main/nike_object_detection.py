@@ -1,4 +1,4 @@
-from utils.scrape_utils import snkrs_img_scraper
+from utils.scrape_util import snkrs_img_scraper
 
 snkrs_img_scraper = snkrs_img_scraper()
 snkrs_img_scraper.login(username='yrc602@gmail.com', password='y0a6n0g2')
