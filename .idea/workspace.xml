@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74bbe505-6b25-4c7d-825c-b82abb811ef7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/nike_series.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/block.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/data_util.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/yolo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/nike_multiclass_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/nike_object_detection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/data_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/backbone.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/scrape_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/scrape_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/backbone.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/backbone.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/block.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/block.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

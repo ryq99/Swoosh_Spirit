@@ -29,10 +29,12 @@ def conv_block(inputs, channels, kernel_size=(3, 3), activation='relu', downsamp
                                             threshold=0)
     return outputs
 
-
 def upsample(inputs):
     outputs = tf.image.resize(inputs,
                               size=(inputs.shape[1] * 2, inputs.shape[2] * 2),
                               method=tf.image.ResizeMethod.BILINEAR)
     return outputs
 
+def route_group(inputs, num_groups, group_id):
+    convs = tf.split(inputs, num_or_size_splits=num_groups, axis=-1)
+    return convs[group_id]
