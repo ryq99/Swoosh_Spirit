@@ -37,9 +37,9 @@ def cspdarknet53_tiny(inputs):
     x = conv_bloack(x, channels=256, kernel_size=(1, 1))
     x = tf.concat([route, x], axis=-1)
     x = tf.keras.layers.MaxPool2D(pool_size=2, strides=2, padding='same')(x)
-    
+
     x = conv_block(x, channels=512)
-    return route_1, x
+    return route_1,
 
 
 
