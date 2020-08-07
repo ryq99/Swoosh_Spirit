@@ -39,7 +39,9 @@ def cspdarknet53_tiny(inputs):
     x = tf.keras.layers.MaxPool2D(pool_size=2, strides=2, padding='same')(x)
 
     x = conv_block(x, channels=512)
-    return route_1,
+    return route_1, x
+
+
 
 
 

@@ -20,13 +20,11 @@ def conv_block(inputs, channels, kernel_size=(3, 3), activation='relu', downsamp
     if bn:
         inputs = tf.keras.layers.BatchNormalization()(inputs)
     if activation == 'relu':
-        outputs = tf.keras.activations.relu(inputs,
-                                           alpha=0,
-                                           threshold=0)
+        outputs = tf.keras.activations.relu(inputs, alpha=0, threshold=0)
     if activation == 'leaky':
-        outputs = tf.keras.activations.relu(inputs,
-                                            alpha=0.1,
-                                            threshold=0)
+        outputs = tf.keras.activations.relu(inputs, alpha=0.1, threshold=0)
+    if activation is None:
+        pass
     return outputs
 
 def upsample(inputs):
