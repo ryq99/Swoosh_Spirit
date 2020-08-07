@@ -25,16 +25,44 @@ def YOLOv4_tiny(inputs, num_bbox=3, NUM_CLASS):
     return [conv_mbbox, conv_lbbox]
 
 def decode():
+    if FRAMEWORK == 'trt':
+        return decode_trt(conv_output, output_size, NUM_CLASS, STRIDES, ANCHORS, i=i, XYSCALE=XYSCALE)
+    elif FRAMEWORK == 'tflite':
+        return decode_tflite(conv_output, output_size, NUM_CLASS, STRIDES, ANCHORS, i=i, XYSCALE=XYSCALE)
+    else:
+        return decode_tf(conv_output, output_size, NUM_CLASS, STRIDES, ANCHORS, i=i, XYSCALE=XYSCALE)
+
+
 
 def decode_train():
+    """
+
+    """
+    return tf.concat([pred_xywh, pred_conf, pred_prob], axis=-1)
 
 def decode_tf():
+    """
+
+    """
+    return pred_xywh, pred_prob
 
 def decode_tflite():
+    """
+
+    """
+    return pred_xywh, pred_prob
 
 def decode_trt():
+    """
+
+    """
+    return pred_xywh, pred_prob
 
 def filter_boxes():
+    """
+
+    """
+    return (boxes, pred_conf)
 
 def compute_loss():
     """
