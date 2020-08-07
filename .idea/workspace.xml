@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74bbe505-6b25-4c7d-825c-b82abb811ef7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/main/train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/yolo.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/yolo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/nike_object_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/dataset.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,11 +45,12 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\15734\PycharmProjects\nike_series\data" />
       <recent name="C:\Users\15734\PycharmProjects\nike_series\main" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.nike_object_detection">
-    <configuration name="nike_object_detection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.dataset">
+    <configuration name="dataset" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="nike_series" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -60,7 +62,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\15734\PycharmProjects\nike_series\main\nike_object_detection.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\15734\PycharmProjects\nike_series\data\dataset.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -114,11 +116,11 @@
     <list>
       <item itemvalue="Python.scrap_util" />
       <item itemvalue="Python.scrap_util (1)" />
-      <item itemvalue="Python.nike_object_detection" />
+      <item itemvalue="Python.dataset" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.nike_object_detection" />
+        <item itemvalue="Python.dataset" />
         <item itemvalue="Python.scrap_util" />
         <item itemvalue="Python.scrap_util (1)" />
       </list>
@@ -190,10 +192,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="2027" height="368" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1593026440431" />
-    <state x="533" y="201" key="SettingsEditor" timestamp="1595526402617">
+    <state x="533" y="201" key="SettingsEditor" timestamp="1596826601477">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="533" y="201" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1595526402617" />
+    <state x="533" y="201" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1596826601477" />
     <state x="181" y="292" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1592382627138">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
