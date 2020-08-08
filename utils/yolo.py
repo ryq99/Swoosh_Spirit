@@ -36,7 +36,10 @@ def decode():
 
 def decode_train():
     """
+    Create prediction
 
+    Return:
+        [pred_xywh, pred_conf, pred_prob]
     """
     return tf.concat([pred_xywh, pred_conf, pred_prob], axis=-1)
 
