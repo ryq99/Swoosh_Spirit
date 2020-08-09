@@ -1,6 +1,7 @@
 import shutil
 import tensorflow as tf
-from utils.yolo import cspdarknet53_tiny, decode_train
+from utils.train_utils import lr_scheduler
+from utils.yolo import YOLOv4_tiny, decode_train
 
 def main(log_dir='./data/log',
          if_freeze=False,
@@ -23,7 +24,7 @@ def main(log_dir='./data/log',
     backbone_epochs = train_config['backbone_epochs']
     model_epochs = train_config['model_epochs']
     global_steps = tf.Variable(1, trainable=False, dtype=tf.in64)
-    warmpup_steps = train_config['warmup_epochs'] * steps_per_epoch
+    warmup_steps = train_config['warmup_epochs'] * steps_per_epoch
     total_steps = (backbone_epochs + model_epochs) * steps_per_epoch
 
     inputs = tf.keras.layers.Input(shape=[data_conifg['input_size'], data_config['input_size'], 3])
@@ -69,15 +70,43 @@ def main(log_dir='./data/log',
         if os.path.exists(train_config['logdir']): shutil.rmtree(train_config['logdir'])
         writer = tf.summary.create_file_writer(train_config['logdir'])
 
-        def train_step(inputs, target):
+        def train_step(batch_inputs, target):
             with tf.GradientTape() as tape:
-                pred_result = model.predict(inputs)
+                # predict
+                pred_result = model.predict(batch_inputs)
+                # init losses
                 giou_loss = conf_loss = prob_loss = 0
-
                 # optimization
                 for i in range(len(freeze_layers)):
                     conv, pred = pred_result[i * 2], pred_result[i * 2 + 1]
-                    loss_items = compute_loss()
+                    loss_items = compute_loss(pred,
+                                              conv,
+                                              target[i][0],
+                                              target[i][1],
+                                              STRIDES=model_config['strides'],
+                                              NUM_CLASS=model_config['num_class'],
+                                              IOU_LOSS_THRESHOLD=model_config['iou_loss_threshold'],
+                                              i=i)
+                    giou_loss += loss_items[0]
+                    conf_loss += loss_items[1]
+                    prob_loss += loss_items[2]
+
+                total_loss = giou_loss + conf_loss + prob_loss
+
+                gradients = tape.gradient(target, model.trainable_variables)
+                optimizer.apply_gradients(zip(gradients, model.trainable_variables))
+                tf.print('==> STEP {:4d}/{:4d}: lr = {:.6f}, giou_loss = {:4.2f}, conf_loss = {:4.2f}, '
+                         'prob_loss = {:4.2f}, total_loss = {:4.2f}'
+                         .format(global_steps, total_steps, optimizer.lr.numpy(), giou_loss, conf_loss, prob_loss, total_loss))
+                # update lr
+                global_steps.assign_add(1)
+                lr = lr_scheduler(global_steps, warmup_steps, total_steps, train_config)
+                optimizer.lr.assign(lr.numpy())
+
+
+
+
+
 
 
 
