@@ -1,46 +1,36 @@
+import os
 import shutil
 import tensorflow as tf
-from utils.train_utils import lr_scheduler, freeze_all, unfreeze_all
-from utils.yolo import YOLOv4_tiny, decode_train, compute_loss
+from utils.train_utils import load_freeze_layer, lr_scheduler, freeze_all, unfreeze_all
+from utils.yolo import yolov4_tiny, decode_train, compute_loss
 
-def main(log_dir='./data/log',
-         if_freeze=False,
-         steps_per_epoch=,
-         data_config=None,
-         train_config=None,
-         model_config=None):
+def main(data_config=None, train_config=None, model_config=None):
+    # configure local GPU
     physical_devices = tf.config.experimental.list_physical_devices('GPU')
     if len(physical_devices) > 0:
         tf.config.experimental.set_memory_growth(physical_devices[0], True)
-
+    # load data
     dataset_train = Dataset(, is_training=True)
     dataset_test = Dataset(, is_training=False)
 
-    log_dir = train_config['log_dir']
-    is_freeze = train_config['is_freeze']
-
     # set up training epochs and steps
-    steps_per_epoch = len(train)
-    backbone_epochs = train_config['backbone_epochs']
-    model_epochs = train_config['model_epochs']
-    assert train_config['epochs'] == backbone_epochs + model_epochs, 'backbone/model epochs not set up correctly...'
+    steps_per_epoch = len(dataset_train)
+    assert (train_config['epochs'] == train_config['backbone_epochs'] + train_config['model_epochs']), \
+        'backbone/model epochs not set up correctly...'
     global_steps = tf.Variable(1, trainable=False, dtype=tf.in64)
     warmup_steps = train_config['warmup_epochs'] * steps_per_epoch
-    total_steps = (backbone_epochs + model_epochs) * steps_per_epoch
+    total_steps = (train_config['backbone_epochs'] + train_config['model_epochs']) * steps_per_epoch
 
-    inputs = tf.keras.layers.Input(shape=[data_conifg['input_size'], data_config['input_size'], 3])
+    # load freeze layers
+    freeze_layers = load_freeze_layer(model_name=model_config['model_name'])
 
-    # STRIDES, ANCHORS, NUM_CLASS, XYSCALE = model_config[]
-    IOU_LOSS_THRESHOLD = train_config['iou_loss_threshold']
-
-    #freeze_layers =
-
-    feature_maps = YOLOv4_tiny(inputs, num_bbox=3, NUM_CLASS=model_config['num_class'])
-
+    # build model
+    inputs = tf.keras.layers.Input(shape=[data_config['input_size'], data_config['input_size'], 3])
+    feature_maps = yolov4_tiny(inputs, num_bbox=3, NUM_CLASS=model_config['num_class'])
     bbox_tensors = []
-    for i, fm in enumerate(feature_maps):
+    for i, feature_map in enumerate(feature_maps):
         if i == 0:
-            bbox_tensor = decode_train(fm,
+            bbox_tensor = decode_train(feature_map,
                                        data_config['input_size'] // 16,
                                        NUM_CLASS=model_conifg['num_class'],
                                        STRIDES=model_conifg['strides'],
@@ -48,16 +38,15 @@ def main(log_dir='./data/log',
                                        i,
                                        XYSCALE=model_conifg['xyscale'])
         else:
-            bbox_tensor = decode_train(fm,
+            bbox_tensor = decode_train(feature_map,
                                        data_config['input_size'] // 32,
                                        NUM_CLASS=model_conifg['num_class'],
                                        STRIDES=model_conifg['strides'],
                                        ANCHORS=model_conifg['anchors'],
                                        i,
                                        XYSCALE=model_conifg['xyscale'])
-        bbox_tensors.append(fm)
+        bbox_tensors.append(feature_map)
         bbox_tensors.append(bbox_tensor)
-
         model = tf.keras.Model(inputs=inputs, outputs=bbox_tensors)
         model.summary()
 
@@ -68,14 +57,16 @@ def main(log_dir='./data/log',
             pass
 
         optimizer = tf.keras.optimizers.Adam()
-        if os.path.exists(train_config['logdir']): shutil.rmtree(train_config['logdir'])
+        if os.path.exists(train_config['logdir']):
+            shutil.rmtree(train_config['logdir'])
         writer = tf.summary.create_file_writer(train_config['logdir'])
 
         def train_step(inputs, target):
             with tf.GradientTape() as tape:
                 # get prediction
                 pred_result = model.predict(inputs)
-
+                if global_steps.numpy() == 1:
+                    tf.print('pred_result shape =', tf.shape(pred_result))
                 # initialize losses
                 giou_loss = conf_loss = prob_loss = 0
 
@@ -96,7 +87,7 @@ def main(log_dir='./data/log',
 
                 total_loss = giou_loss + conf_loss + prob_loss
 
-                gradients = tape.gradient(target, model.trainable_variables)
+                gradients = tape.gradient(total_loss, model.trainable_variables)
                 optimizer.apply_gradients(zip(gradients, model.trainable_variables))
 
                 # print step info
