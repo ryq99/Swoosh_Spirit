@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74bbe505-6b25-4c7d-825c-b82abb811ef7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/train_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/nike_series.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nike_series.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/train_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/train_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
