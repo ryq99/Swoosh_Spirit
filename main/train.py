@@ -64,7 +64,7 @@ def main(data_config=None, train_config=None, model_config=None):
         def train_step(inputs, target):
             with tf.GradientTape() as tape:
                 # get prediction
-                pred_result = model.predict(inputs)
+                pred_result = model(inputs, training=True)
                 if global_steps.numpy() == 1:
                     tf.print('pred_result shape =', tf.shape(pred_result))
                 # initialize losses
