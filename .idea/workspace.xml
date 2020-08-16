@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74bbe505-6b25-4c7d-825c-b82abb811ef7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/model_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/backbone.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/block.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/data_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/data_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/scrape_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/scrape_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/yolo.py" beforeDir="false" />
-    </list>
+    <list default="true" id="74bbe505-6b25-4c7d-825c-b82abb811ef7" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +15,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="bboy monk" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1dR96sTQbG14CcSN39p7Z2qSby2" />
@@ -141,7 +138,19 @@
       <option name="presentableId" value="Default" />
       <updated>1592376866380</updated>
     </task>
+    <task id="LOCAL-00001" summary="change utils folder structure">
+      <created>1597606327999</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1597606327999</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="change utils folder structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="change utils folder structure" />
   </component>
   <component name="WindowStateProjectService">
     <state x="910" y="419" key="#Notifications" timestamp="1595526448703">
@@ -172,6 +181,14 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="730" y="110" key="#scrap_util/0.0.2048.1112@0.0.2048.1112" timestamp="1592455085492" />
+    <state x="285" y="82" width="1596" height="961" key="CommitChangelistDialog2" timestamp="1597606327470">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="285" y="82" width="1596" height="961" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1597606327470" />
+    <state x="294" y="113" key="DiffContextDialog" timestamp="1597606255150">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="294" y="113" key="DiffContextDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1597606255150" />
     <state width="2027" height="305" key="GridCell.Tab.0.bottom" timestamp="1593634094751">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -208,6 +225,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="533" y="201" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1596950290114" />
+    <state x="93" y="93" width="1862" height="926" key="ShowDiffWithBranchDialog" timestamp="1597606427349">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="93" y="93" width="1862" height="926" key="ShowDiffWithBranchDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1597606427349" />
     <state x="181" y="292" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1592382627138">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
