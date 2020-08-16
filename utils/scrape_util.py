@@ -7,8 +7,9 @@ from selenium.webdriver.common.keys import Keys
 from urllib.request import urlretrieve
 
 class snkrs_img_scraper():
-    '''
-    '''
+    """
+
+    """
     def __init__(self, url='https://www.pinterest.com'):
         self.browser = webdriver.Chrome(executable_path='chromedriver.exe')
         self.browser.get(url=url)
@@ -18,13 +19,13 @@ class snkrs_img_scraper():
         self.df = pd.DataFrame()
 
     def login(self, username, password):
-        '''
+        """
         Log in with pinterest user name and password (google account does not work)
 
         browser: object, Chrome webdriver instance
         username: email, any other type of username is not supported yet
 
-        '''
+        """
         assert '@' in username
         if self.browser.current_url != "https://www.pinterest.com/login/?referrer=home_page":
             self.browser.get("https://www.pinterest.com/login/?referrer=home_page")
@@ -40,13 +41,13 @@ class snkrs_img_scraper():
         print('Login Successful!')
 
     def search_for_product(self, keyword=None):
-        '''
+        """
         # Search for the product, this is the way to change pages later.
 
         browser: object, Chrome webdriver instance
         keyword: str, the keyword for searching
 
-        '''
+        """
         seeker = self.browser.find_element_by_name("searchBoxInput")
         seeker.send_keys(Keys.CONTROL + "a")
         seeker.send_keys(Keys.DELETE)
@@ -55,10 +56,10 @@ class snkrs_img_scraper():
         wait.until(lambda x: x.find_element_by_tag_name('img'))
 
     def get_img_urls_and_names(self, max_num_scroll=None, num_img = None):
-        '''
+        """
         get a list of image tags, in which image urls and names can be found
         :return:
-        '''
+        """
         lenOfPage = self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
         match = False
         num_of_scroll = 0
@@ -88,11 +89,11 @@ class snkrs_img_scraper():
         return self.img_list
 
     def img_list_2_df(self, clear_df=False, profile_name='Ray'):
-        '''
+        """
         collect image urls and names into a data frame
         :param path:
         :return:
-        '''
+        """
         if (len(self.df) == 0) or (clear_df == True):
             self.df = pd.DataFrame(self.img_list, columns=['url', 'title'])
         else:
@@ -110,6 +111,9 @@ class snkrs_img_scraper():
         return self.df
 
     def download_images(self, url_list=None, label_name=None):
+        """
+
+        """
         path = os.path.join('data/images', label_name)
         if not os.path.isdir(path):
             os.mkdir(path)

@@ -4,6 +4,105 @@ from utils.backbone import cspdarknet53_tiny
 from utils.block import conv_block, upsample, route_group
 from utils.train_utils import bbox_iou, bbox_giou, bbox_ciou
 
+def conv_block(inputs, channels, kernel_size=(3, 3), activation='relu', downsample=False, bn=True):
+    if downsample:
+        strides = (2, 2)
+        padding = 'valid'
+        inputs = tf.keras.layers.ZeroPadding2D(padding=((1, 0), (1, 0)))(inputs)
+    else:
+        strides = (1, 1)
+        padding = 'same'
+    inputs = tf.keras.layers.Conv2D(filters=channels,
+                                    kernel_size=kernel_size,
+                                    strides=strides,
+                                    padding=padding,
+                                    use_bias=not bn,
+                                    kernel_regularizer=tf.keras.regularizers.l2(l=0.0005),
+                                    kernel_initializer=tf.random_normal_initializer(stddev=0.01),
+                                    bias_initializer=tf.constant_initializer(0.))(inputs)
+    if bn:
+        inputs = tf.keras.layers.BatchNormalization()(inputs)
+    if activation == 'relu':
+        outputs = tf.keras.activations.relu(inputs, alpha=0, threshold=0)
+    if activation == 'leaky':
+        outputs = tf.keras.activations.relu(inputs, alpha=0.1, threshold=0)
+    if activation is None:
+        pass
+    return outputs
+
+
+def upsample(inputs):
+    outputs = tf.image.resize(inputs,
+                              size=(inputs.shape[1] * 2, inputs.shape[2] * 2),
+                              method=tf.image.ResizeMethod.BILINEAR)
+    return outputs
+
+
+def route_group(inputs, num_groups, group_id):
+    convs = tf.split(inputs, num_or_size_splits=num_groups, axis=-1)
+    return convs[group_id]
+
+
+def cspdarknet53_tiny(inputs):
+    x = conv_block(inputs, channels=32, downsample=True)
+    x = conv_block(x, channels=64, downsample=True)
+    #### block start #####
+    x = conv_block(x, channels=64)
+    route = x
+    x = route_group(x, num_groups=2, group_id=1)
+    x = conv_block(x, channels=32)
+    route_1 = x
+    x = conv_block(x, channels=32)
+    x = tf.concat([x, route_1], axis=-1)
+    x = conv_block(x, channels=64, kernel_size=(1, 1))
+    x = tf.concat([route, x], axis=-1)
+    x = tf.keras.layers.MaxPool2D(pool_size=2, strides=2, padding='same')(x)
+    #### block start #####
+    x = conv_block(x, channels=128)
+    route = x
+    x = route_group(x, num_groups=2, group_id=1)
+    x = conv_block(x, channels=64)
+    route_1 = x
+    x = conv_block(x, channels=64)
+    x = tf.concat([x, route_1], axis=-1)
+    x = conv_block(x, channels=128, kernel_size=(1, 1))
+    x = tf.concat([route, x], axis=-1)
+    x = tf.keras.layers.MaxPool2D(pool_size=2, strides=2, padding='same')(x)
+    #### block start #####
+    x = conv_block(x, channels=256)
+    route = x
+    x = route_group(x, num_groups=2, group_id=1)
+    x = conv_block(x, 128)
+    route_1 = x
+    x = conv_block(x, channels=128)
+    x = tf.concat([x, route_1], axis=-1)
+    x = conv_bloack(x, channels=256, kernel_size=(1, 1))
+    x = tf.concat([route, x], axis=-1)
+    x = tf.keras.layers.MaxPool2D(pool_size=2, strides=2, padding='same')(x)
+
+    x = conv_block(x, channels=512)
+    return route_1, x
+
+
+def darknet53_tiny(inputs):
+    x = conv_block(inputs, channels=16, kernel_size=(3, 3))
+    x = tf.keras.layers.MaxPool2D(pool_size=2, strides=2, padding='same')(x)
+    x = conv_block(x, channels=32, kernel_size=(3, 3))
+    x = tf.keras.layers.MaxPool2D(pool_size=2, strides=2, padding='same')(x)
+    x = conv_block(x, channels=64, kernel_size=(3, 3))
+    x = tf.keras.layers.MaxPool2D(pool_size=2, strides=2, padding='same')(x)
+    x = conv_block(x, channels=128, kernel_size=(3, 3))
+    x = tf.keras.layers.MaxPool2D(pool_size=2, strides=2, padding='same')(x)
+    x = conv_block(x, channels=256, kernel_size=(3, 3))
+    route_1 = x
+    x = tf.keras.layers.MaxPool2D(pool_size=2, strides=2, padding='same')(x)
+    x = conv_block(x, channels=512, kernel_size=(3, 3))
+    x = tf.keras.layers.MaxPool2D(pool_size=2, strides=2, padding='same')(x)
+    x = conv_block(x, channels=1024, kernel_size=(3, 3))
+
+    return route_1, x
+
+
 def yolov4_tiny(inputs, num_bbox=3, NUM_CLASS):
     """
 
