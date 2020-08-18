@@ -83,16 +83,21 @@ class snkrs_img_scraper():
                 if img_count >= num_img:
                     match = True
             if max_num_scroll:
-                if (num_of_scroll == max_num_scroll):
+                if num_of_scroll == max_num_scroll:
                     match = True
             wait = ui.WebDriverWait(self.browser, 3)
         return self.img_list
 
     def img_list_2_df(self, clear_df=False, profile_name='Ray'):
         """
-        collect image urls and names into a data frame
-        :param path:
-        :return:
+        Collect image urls and names into a data frame
+
+        Args:
+            clear_df: boolean
+            profile_name: Ray
+
+        Returns:
+            df
         """
         if (len(self.df) == 0) or (clear_df == True):
             self.df = pd.DataFrame(self.img_list, columns=['url', 'title'])
