@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:nike_series" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="74bbe505-6b25-4c7d-825c-b82abb811ef7" name="Default Changelist" comment="" />
+    <list default="true" id="74bbe505-6b25-4c7d-825c-b82abb811ef7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img_title_url_df.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/img_title_url_df.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/data_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/data_utils.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +46,13 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/ryq99/Swoosh_Spirit.git" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1dR96sTQbG14CcSN39p7Z2qSby2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -145,8 +177,26 @@
       <option name="project" value="LOCAL" />
       <updated>1597606327999</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="change utils folder structure">
+      <created>1597606455245</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1597606455245</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="change utils folder structure" />
@@ -181,10 +231,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="730" y="110" key="#scrap_util/0.0.2048.1112@0.0.2048.1112" timestamp="1592455085492" />
-    <state x="285" y="82" width="1596" height="961" key="CommitChangelistDialog2" timestamp="1597606327470">
+    <state x="285" y="82" width="1596" height="961" key="CommitChangelistDialog2" timestamp="1597606454777">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="285" y="82" width="1596" height="961" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1597606327470" />
+    <state x="285" y="82" width="1596" height="961" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1597606454777" />
     <state x="294" y="113" key="DiffContextDialog" timestamp="1597606255150">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -229,6 +279,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="93" y="93" width="1862" height="926" key="ShowDiffWithBranchDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1597606427349" />
+    <state x="524" y="285" key="Vcs.Push.Dialog.v2" timestamp="1597606460353">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="524" y="285" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1597606460353" />
     <state x="181" y="292" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1592382627138">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>

@@ -154,7 +154,5 @@ def main(data_config=None, train_config=None, model_config=None):
         model.save_weights('model_checkpoints/' + str(global_steps))
 
 
-    if __name__ == '__main__':
-        main(data_config=None,
-             train_config=None,
-             model_config=None)
+if __name__ == '__main__':
+    main(data_config=None, train_config=None, model_config=None)
