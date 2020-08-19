@@ -11,8 +11,8 @@ def main(data_config=None, train_config=None, model_config=None):
         tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
     # load data
-    dataset_train = Dataset(a, is_training=True)
-    dataset_test = Dataset(a, is_training=False)
+    img_train = Dataset(a, is_training=True)
+    img_test = Dataset(a, is_training=False)
 
     # set up training epochs and steps
     steps_per_epoch = len(dataset_train)
@@ -62,10 +62,10 @@ def main(data_config=None, train_config=None, model_config=None):
         shutil.rmtree(train_config['logdir'])
     writer = tf.summary.create_file_writer(train_config['logdir'])
 
-    def train_step(inputs, target):
+    def train_step(img_train, target):
         with tf.GradientTape() as tape:
             # get prediction
-            pred_result = model(inputs, training=True)
+            pred_result = model(img_train, training=True)
             if global_steps.numpy() == 1:
                 tf.print('pred_result shape =', tf.shape(pred_result))
 
@@ -109,9 +109,9 @@ def main(data_config=None, train_config=None, model_config=None):
                 tf.summary.scalar('loss/prob_loss', prob_loss, step=global_steps)
             writer.flush()
 
-    def test_step(inputs, target):
+    def test_step(img_test, target):
         with tf.GradientTape as tape:
-            predict_result = model(inputs, training=True)
+            predict_result = model(img_test, training=True)
             giou_loss = conf_loss = prob_loss = 0
 
             # optimization process
