@@ -151,7 +151,7 @@ def decode_train(feature_map, fm_size, NUM_CLASS, STRIDES, ANCHORS, i=0, XYSCALE
     feature_map = tf.reshape(feature_map,
                              shape=(tf.shape(feature_map)[0], fm_size, fm_size, 3, 5 + NUM_CLASS))
 
-    # xy, wh, is_obj, P(obji|is_obj)
+    # xywh, confidence, classification
     (fm_raw_dxdy,
      fm_raw_dwdh,
      fm_raw_conf,
