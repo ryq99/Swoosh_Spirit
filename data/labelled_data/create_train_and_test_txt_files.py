@@ -30,6 +30,8 @@ for current_dir, dirs, files in os.walk('.'):
 # train test split
 img_train = img_paths[int(len(img_paths) * test_size):]
 img_test = img_paths[:int(len(img_paths) * test_size)]
+print('number of train images:', len(img_train))
+print('number of test images:', len(img_test))
 
 # write image paths to train.txt and test.txt
 with open('train.txt', 'w') as f:
