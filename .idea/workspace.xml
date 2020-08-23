@@ -22,9 +22,7 @@
   <component name="ChangeListManager">
     <list default="true" id="74bbe505-6b25-4c7d-825c-b82abb811ef7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/labelled_data/creating_files_data_and_name.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/labelled_data/creating_train_and_test_txt_files.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/labelled_data/getting_full_path.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/data_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/data_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,10 +272,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="2027" height="368" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1593026440431" />
-    <state x="533" y="201" key="SettingsEditor" timestamp="1598049878120">
+    <state x="533" y="201" key="SettingsEditor" timestamp="1598205631716">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="533" y="201" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1598049878120" />
+    <state x="533" y="201" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1598205631716" />
     <state x="93" y="93" width="1862" height="926" key="ShowDiffWithBranchDialog" timestamp="1597606427349">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>

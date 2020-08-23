@@ -4,20 +4,17 @@ import tensorflow as tf
 class Dataset(object):
     """implement Dataset here"""
 
-    def __init__(self, FLAGS, is_training: bool, dataset_type: str = "converted_coco"):
-        self.tiny = FLAGS.tiny
-        self.strides, self.anchors, NUM_CLASS, XYSCALE = utils.load_config(FLAGS)
+    def __init__(self, config=None, is_training=False, dataset_type: str = "converted_coco"):
+        #self.tiny = FLAGS.tiny
+        self.strides = config['strides']
+        self.anchors = config['anchors']
+        NUM_CLASS = config['num_class']
+        XYSCALE = config['xyscale']
         self.dataset_type = dataset_type
 
-        self.annot_path = (
-            cfg.TRAIN.ANNOT_PATH if is_training else cfg.TEST.ANNOT_PATH
-        )
-        self.input_sizes = (
-            cfg.TRAIN.INPUT_SIZE if is_training else cfg.TEST.INPUT_SIZE
-        )
-        self.batch_size = (
-            cfg.TRAIN.BATCH_SIZE if is_training else cfg.TEST.BATCH_SIZE
-        )
+        self.annot_path = (config['train_data_path'] if is_training else config['test_data_path'])
+        self.input_sizes = (cfg.TRAIN.INPUT_SIZE if is_training else cfg.TEST.INPUT_SIZE)
+        self.batch_size = (cfg.TRAIN.BATCH_SIZE if is_training else cfg.TEST.BATCH_SIZE)
         self.data_aug = cfg.TRAIN.DATA_AUG if is_training else cfg.TEST.DATA_AUG
 
         self.train_input_sizes = cfg.TRAIN.INPUT_SIZE
