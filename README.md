@@ -1,4 +1,4 @@
-# Swoosh Spirit
+# SWOOSH SPIRIT
 
 ![Nike Logo](https://www.itl.cat/pngfile/big/235-2358803_nike-wallpaper-iphone-x.jpg)
 
